@@ -570,8 +570,8 @@ func parseServer(server string, testing bool) (serverIdentity *[32]byte, host st
 			err = errors.New("URL contains a port number")
 			return
 		}
-		if !strings.HasSuffix(host, ".onion") {
-			err = errors.New("host is not a .onion address")
+		if !strings.HasSuffix(host, ".onion") && host != "localhost" {
+			err = errors.New("host is neither a .onion address nor localhost")
 			return
 		}
 		host += ":16333"
